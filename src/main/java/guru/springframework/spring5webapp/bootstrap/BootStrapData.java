@@ -43,11 +43,19 @@ public class BootStrapData implements CommandLineRunner{
 		bookRepository.save(noEJB);
 		
 		Publisher xyz = new Publisher("XYZ Editions", "Washington Ave., Maryland, MD, 25014");
+		
+		ddd.setPublisher(xyz);
+		xyz.getBooks().add(ddd);
+		publisherRepository.save(xyz);
+		
+		noEJB.setPublisher(xyz);
+		xyz.getBooks().add(noEJB);
 		publisherRepository.save(xyz);
 		
 		System.out.println("Started in Boostrap");
 		System.out.println("Number of books: " + bookRepository.count());
 		System.out.println("Publisher: " + publisherRepository.findAll());
+		System.out.println("Publisher # books: " + xyz.getBooks().size());
 	}
 	
 }
